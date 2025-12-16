@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/hello-cicd/static/css/main.f855e6bc.css",
+    "main.js": "/hello-cicd/static/js/main.a9f06947.js",
+    "static/js/453.34d6a7ad.chunk.js": "/hello-cicd/static/js/453.34d6a7ad.chunk.js",
+    "static/media/logo.svg": "/hello-cicd/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/hello-cicd/index.html",
+    "main.f855e6bc.css.map": "/hello-cicd/static/css/main.f855e6bc.css.map",
+    "main.a9f06947.js.map": "/hello-cicd/static/js/main.a9f06947.js.map",
+    "453.34d6a7ad.chunk.js.map": "/hello-cicd/static/js/453.34d6a7ad.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.a9f06947.js"
+  ]
+}
