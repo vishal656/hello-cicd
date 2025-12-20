@@ -24,12 +24,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install dependencies
+        run: npm ci
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Tests with Coverage
+        run: npm test -- --coverage
+
+      - name: Build App
+        run: npm run build
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
