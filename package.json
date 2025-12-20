@@ -27,7 +27,6 @@
     ]
   },
   "jest": {
-  "collectCoverage": true,
   "coverageThreshold": {
     "global": {
       "branches": 80,
