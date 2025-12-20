@@ -1,4 +1,4 @@
-name: Build & Deploy React App to GitHub Pages
+name: CI/CD React App (Quality Gates Enabled)
 
 on:
   push:
@@ -15,7 +15,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+
+  lint:
+    name: Lint Check
     runs-on: ubuntu-latest
 
     steps:
@@ -26,22 +28,52 @@ jobs:
           node-version: 18
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
+      - run: npm run lint
 
-      - name: Run ESLint
-        run: npm run lint
 
-      - name: Run Tests with Coverage
-        run: npm test -- --coverage
+  test:
+    name: Test & Coverage
+    runs-on: ubuntu-latest
+    needs: lint
 
-      - name: Build App
-        run: npm run build
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - run: npm ci
+      - run: npm test -- --coverage
+
+
+  build:
+    name: Build App
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/deploy-pages@v4

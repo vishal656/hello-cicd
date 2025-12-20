@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint src --max-warnings=0"
+    "lint": "react-scripts lint"
   },
   "eslintConfig": {
     "extends": [
@@ -27,11 +27,11 @@
     ]
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!src/index.js",
-      "!src/reportWebVitals.js"
-    ],
+    "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "src/index.js",
+    "src/reportWebVitals.js"
+  ],
   "coverageThreshold": {
     "global": {
       "branches": 80,
