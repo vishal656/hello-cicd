@@ -27,6 +27,11 @@
     ]
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/reportWebVitals.js"
+    ],
   "coverageThreshold": {
     "global": {
       "branches": 80,
